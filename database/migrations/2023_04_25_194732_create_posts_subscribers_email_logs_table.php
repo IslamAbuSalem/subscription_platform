@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('website_post_id');
             $table->integer('website_subscriber_id');
-            $table->boolean('is_sent');
+            $table->boolean('is_sent')->default(0);
             $table->timestamps();
         });
     }

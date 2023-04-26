@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\WebsitePosts\NewWebsitePostRequest;
 use App\Http\Resources\API\V1\WebsitePosts\StoreMethodResource;
+use App\Models\PostsSubscribersEmailLog;
 use App\Models\WebsitePost;
 use App\Models\WebsiteSubscriber;
 use Illuminate\Http\Request;
@@ -39,13 +40,10 @@ class WebsitePostsController extends Controller
         $result = new StoreMethodResource($websitePost);
         $result->success = true;
 
-        $websiteSubscriberIds = WebsiteSubscriber::select('id as website_subscriber_id')
-            ->where('website_id',$request->website_id )->get();
-        $websiteSubscriberIds->put('website_post_id', $websitePost->id);
-
-//        $query = DB::table('website_subscribers')->select('id as website_subscriber_id', $websitePost->id .' as website_post_id' )
-//            ->where('website_id',$request->website_id )->get();
-        dd($websiteSubscriberIds);
+        $websiteSubscriberIds = WebsiteSubscriber::select('id as website_subscriber_id',DB::raw($websitePost->id .' as website_post_id'))
+            ->where('website_id',$request->website_id )
+            ->get()->toArray();
+        PostsSubscribersEmailLog::insert($websiteSubscriberIds);
         return $result;
 
 
