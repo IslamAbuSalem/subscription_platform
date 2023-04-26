@@ -9,7 +9,7 @@ php artisan queue:work
 
 ------------------
 I created 3 endpoints:
-1: to retrive all websites so I can get the website_id
+1: to retrieve all websites so I can get the website_id
 curl --location --request GET 'http://127.0.0.1:8000/api/websites'
 
 2: user subscribe
@@ -26,6 +26,5 @@ curl --location --request POST 'http://127.0.0.1:8001/api/websitePosts' \
 --form 'description="descriptiondescriptiondescriptiondescriptiondescription"'
 
 
-Finally I attached exported postman collection if you want to test
-
-
+Finally, I attached exported postman collection if you want to test
+please check subscription_platform.postman_collection.json
