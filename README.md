@@ -28,3 +28,4 @@ curl --location --request POST 'http://127.0.0.1:8001/api/websitePosts' \
 
 Finally, I attached exported postman collection if you want to test
 please check subscription_platform.postman_collection.json
+******************
